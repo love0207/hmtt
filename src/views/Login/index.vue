@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="登录">
+    <van-nav-bar title="登录" @click-left="$router.back()">
       <template #left><van-icon name="cross" /></template>
     </van-nav-bar>
     <van-form @submit="onSubmit" ref="form">
@@ -30,6 +30,7 @@
         <template #left-icon
           ><i class="toutiao toutiao-yanzhengma"></i>
         </template>
+        <!-- <MyIcon name="yanzhengma" slot="left-icon"></MyIcon> -->
         <template #button>
           <van-count-down
             v-if="isCountDownShow"
@@ -58,11 +59,12 @@
 
 <script>
 import { getSmsCode, login } from '@/api/index.js'
+
 export default {
   created () { },
   data () {
     return {
-      mobile: '13911111111',
+      mobile: '13911111221',
       code: '246810',
       time: 5 * 1000,
       isCountDownShow: false
@@ -74,6 +76,7 @@ export default {
         const res = await login(values)
         console.log(res)
         this.$store.commit('setUser', res.data.data)
+        this.$router.push({ name: 'my' })
       } catch (err) {
         console.log(err)
       }
