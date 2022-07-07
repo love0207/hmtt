@@ -9,6 +9,9 @@ import '@/styles/icon.less'
 import '@/styles/reset.less'
 import '@/styles/index.less'
 import * as obj from '@/fliters'
+import FollowUser from '@/components/FollowUser.vue'
+import '@/components'
+Vue.component(FollowUser.name, FollowUser)
 Object.keys(obj).forEach(key => {
   Vue.filter(key, obj[key])
 })
